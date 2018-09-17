@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
 from django.http import JsonResponse
-from .config import *
+from .config import CODE2SESSION
 import requests
 # Create your views here.
 

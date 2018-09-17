@@ -2,13 +2,13 @@ from django.db import models
 from django.core.validators import MaxValueValidator,MinValueValidator
 # Create your models here.
 class Weixin_user(models.Model):
-    openid = models.CharField(max_length=50)             #微信用户的openid
+    openid = models.CharField(max_length=50,unique=True)             #微信用户的openid
     start_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
 
 class Account_info(models.Model):
     weixin_user = models.ForeignKey(Weixin_user,on_delete=models.CASCADE)
-    phone = models.IntegerField()              #账号的手机号
+    phone = models.CharField(max_length=20)             #账号的手机号
     password = models.CharField(max_length=50) #账户的密码
 
 class Class_info(models.Model):

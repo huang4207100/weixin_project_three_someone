@@ -1,0 +1,8 @@
+2018-09-21 17:56:47,714 [MainThread:10488] [django.db.backends:111] [utils:execute] [DEBUG]- (0.009) SELECT @@SQL_AUTO_IS_NULL; args=None
+2018-09-21 17:56:47,722 [MainThread:10488] [django.db.backends:111] [utils:execute] [DEBUG]- (0.008) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+2018-09-21 17:56:47,733 [MainThread:10488] [django.db.backends:111] [utils:execute] [DEBUG]- (0.009) SELECT VERSION(); args=None
+2018-09-21 17:56:47,839 [MainThread:10488] [django.db.backends:111] [utils:execute] [DEBUG]- (0.010) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+2018-09-21 17:56:47,863 [MainThread:10488] [django.db.backends:111] [utils:execute] [DEBUG]- (0.011) INSERT INTO `weixin_weixin_user` (`openid`, `start_time`, `update_time`) VALUES ('公的司梵', '2018-09-21 17:56:47.852582', '2018-09-21 17:56:47.852582'); args=['公的司梵', '2018-09-21 17:56:47.852582', '2018-09-21 17:56:47.852582']
+2018-09-21 17:57:44,775 [MainThread:19176] [django.db.backends:111] [utils:execute] [DEBUG]- (0.010) SELECT @@SQL_AUTO_IS_NULL; args=None
+2018-09-21 17:57:44,785 [MainThread:19176] [django.db.backends:111] [utils:execute] [DEBUG]- (0.009) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+2018-09-21 17:57:44,794 [MainThread:19176] [django.db.backends:111] [utils:execute] [DEBUG]- (0.009) SELECT VERSION(); args=None

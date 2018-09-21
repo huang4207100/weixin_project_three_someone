@@ -20,6 +20,7 @@ def check_header(func):
             rsp = {"succ": False, "data": {}, "msg": "header 验证失败"}
             return JsonResponse(rsp)
         func(request)
+
     return _func
 
 
@@ -29,7 +30,7 @@ def generate_header_value(openid):
 
 def write_login_header(openid, header_info):
     key = TEMPLATE_OPENID_KEY.substitute({"openid": openid})
-    return True if write_to_redis(key, header_info) else False
+    return True if write_to_redis(key, header_info, ex=LIVE_TIME) else False
 
 
 def del_login_header(openid):

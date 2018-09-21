@@ -18,13 +18,13 @@ def prolong_redis_key(redis_key, seconds):
     :param seconds: 要延长的时间(秒)
     :return:
     """
-    get_redis_connection().expire(redis_key, seconds)
+    return get_redis_connection().expire(redis_key, seconds)
 
 '''
 删除一
 '''
 def del_from_redis(*keys):
-    get_redis_connection().delete(*keys)
+    return get_redis_connection().delete(*keys)
 
 
 '''

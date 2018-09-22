@@ -1,0 +1,19 @@
+# url
+# input
+# output
+
+
+1.login
+url: https://www.saber-toothed.xyz/wx/login
+input: {
+	"js_code": res.code #string
+}
+output: {
+	"succ":true/false, #interface succ or not
+	"msg":""           
+	#拿到登录header
+	"data":{
+		"time": 1537602530, #unix time int
+		"openid": "fdgdfssdf" #weixin user openid
+	}
+}

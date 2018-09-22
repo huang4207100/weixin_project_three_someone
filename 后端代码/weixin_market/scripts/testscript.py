@@ -4,14 +4,16 @@ from weixin.models import Coupon
 from weixin_market.settings import *
 from django.utils import timezone
 import pdb
-logger = logging.getLogger("weixin.view")
+logger = logging.getLogger("weixin.views")
 ###test
 def login_test(open_id):
-    print(dir(logger))
-    logger.error("已有用户")
-    obj = Weixin_user(openid="公的司66梵")
+    logger.info(5345)
+    logger.error(74)
+    logger.warning("fasdfd")
+    logger.debug("[Debug] "+"已有用户")
+    obj = Weixin_user(openid="公的司6gfs6梵00656")
     obj.save()
-    print(obj.id)
+    #print(obj.id)
 
 ####注册时给用户添加优惠卷
 def login_add_coupon(openid):

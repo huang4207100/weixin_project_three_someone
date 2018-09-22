@@ -31,10 +31,10 @@ ALLOWED_HOSTS = []
 
 # redis definition
 REDIS_CONFIG = {
-    "redis_ip":"132.232.93.36",
-    "redis_port":6379,
-    "redis_auth":"yfm3nthvplk2xz1u8wbg",
-    "redis_db":0
+    "redis_ip": "132.232.93.36",
+    "redis_port": 6379,
+    "redis_auth": "yfm3nthvplk2xz1u8wbg",
+    "redis_db": 0
 }
 # Application definition
 
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -139,85 +139,77 @@ STATIC_URL = '/static/'
 import logging
 import django.utils.log
 import logging.handlers
+import logging
+logger = logging.getLogger('django')  # 这里的日志记录器要和setting中的loggers选项对应，不能随意给参
+
+
+"""
+import logging
+logger = logging.getLogger('django')#这里的日志记录器要和setting中的loggers选项对应，不能随意给参
+logger.debug('[Debug] '+ msg)
+logger.info('[Success] '+ msg)
+logger.warning('[Warning] '+ msg)
+logger.error('[Error] '+ msg)
+logger.critical('[Critical] '+ msg)
+......
+
+if auth_pass:
+    logger.info('[Success] '+ user +' has logged in!')
+    return JsonResponse({'result': 'Success', 'message': 'Login successfully.'})
+else:
+    logger.warning('[Failed] '+ user + ' failed to login!')
+ """
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
     'formatters': {
-       'standard': {
-            'format': '%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] [%(module)s:%(funcName)s] [%(levelname)s]- %(message)s'}  #日志格式 
+        'standard': {
+            'format': '%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] [%(module)s:%(funcName)s] [%(levelname)s]- %(message)s'}  # 日志格式
     },
     'filters': {
     },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'include_html': True,
-        },
         'default': {
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename': './weixin/log/all.log',     #日志输出文件
-            'maxBytes': 1024*1024*5,                  #文件大小 
-            'backupCount': 5,                         #备份份数
-            'formatter':'standard',                   #使用哪种formatters日志格式
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': './weixin/log/all.log',  # 日志输出文件
+            'maxBytes': 1024*1024*5,  # 文件大小
+            'backupCount': 5,  # 备份份数
+            'formatter': 'standard',  # 使用哪种formatters日志格式
         },
         'error': {
-            'level':'ERROR',
-            'class':'logging.handlers.RotatingFileHandler',
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': './weixin/log/error.log',
-            'maxBytes':1024*1024*5,
+            'maxBytes': 1024*1024*5,
             'backupCount': 5,
-            'formatter':'standard',
+            'formatter': 'standard',
         },
-        'console':{
+        'warning': {
+            'level': 'WARNING',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': './weixin/log/warning.log',
+            'maxBytes': 1024*1024*5,
+            'backupCount': 5,
+            'formatter': 'standard',
+        },
+        'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'standard'
         },
-        'request_handler': {
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename': './weixin/log/request.log', 
-            'maxBytes': 1024*1024*5, 
-            'backupCount': 5,
-            'formatter':'standard',
-        },
-        'scprits_handler': {
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename':'./weixin/log/script.log', 
-            'maxBytes': 1024*1024*5, 
-            'backupCount': 5,
-            'formatter':'standard',
-        }
     },
     'loggers': {
         'django': {
             'handlers': ['default', 'console'],
             'level': 'DEBUG',
-            'propagate': False 
-        },
-        'django.request': {
-            'handlers': ['request_handler'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-        'scripts': { 
-            'handlers': ['scprits_handler'],
-            'level': 'INFO',
             'propagate': False
         },
         'weixin.views': {
-            'handlers': ['default', 'error'],
+            'handlers': ['console', 'default', 'warning', 'error'],
             'level': 'DEBUG',
             'propagate': True
         },
-        'weixin.util':{
-            'handlers': ['error'],
-            'level': 'ERROR',
-            'propagate': True
-        }
-    } 
+    }
 }
